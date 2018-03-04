@@ -9,7 +9,8 @@ class Flight(db.Model):
 	origin=db.Column(db.String,nullable=False)
 	destination=db.Column(db.String,nullable=False)
 	duration=db.Column(db.Integer,nullable=False)
-
+	def __repr__(self):
+		return "[model.Flight object, <id=%d>]" %self.id
 
 class Passenger(db.Model):
 	__tablename__="passengers"
@@ -24,10 +25,11 @@ def addflight(ori,des,dur):
     db.session.commit()
 
 def query_all_flights():
-    all_flights=[]
-    for flight in Flight.query.all():
-        # print flight.__dict__
-        all_flights.append(flight.__dict__)
-    return all_flights
+	all_flights=[]
+	print Flight.query.all()
+	for flight in Flight.query.all():
+		# print flight.__dict__
+		all_flights.append(flight.__dict__)
+	return all_flights
 
 #一对多（多的表里面保存外键，指向一的主键）： 一个航班的飞机上 可以有 很多乘客    
