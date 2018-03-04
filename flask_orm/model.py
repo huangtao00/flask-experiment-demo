@@ -18,7 +18,7 @@ class Passenger(db.Model):
 	flight_id=db.Column(db.Integer, db.ForeignKey("flights.id"),nullable=False)
 
 # 写入航班信息到数据库，数据可来源于用户输入，或网上爬取
-def addFlight(ori,des,dur):
+def addflight(ori,des,dur):
     flight=Flight(origin=ori,destination=des,duration=dur)
     db.session.add(flight)
     db.session.commit()
